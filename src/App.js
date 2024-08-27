@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import About from "./about.jsx";
+import Footer from './components/footer.js';
+import Navbar from "./components/navbar.js"
 // Import the necessary CSS file
 //////////////
 function App() {
@@ -7,18 +9,23 @@ function App() {
     <div className="App">
       <Router>
         <div>
-          <Navbar />
+        <Navbar/>
 
           {/* Define the routes using the React Router */}
-          <Routes></Routes>
+          <Routes>
+            
+         
+          </Routes>
         </div>
-        <Footer />
+        <Footer/>
+
       </Router>
     </div>
   );
 }
 
 export default App;
+
 
 // drop the link of your hosted front-end  and Github Repo at the start of the presentation
 // demo the site and show responsiveness of one page (please spend less than 1 minute)
