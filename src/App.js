@@ -1,17 +1,28 @@
+// src/App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import EventsPage from "./pages/EventsPage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import "./App.css";
 
-// Import the necessary CSS file
-//////////////
 function App() {
   return (
     <div className="App">
       <Router>
-        <div>
-          <Navbar />
-
-          {/* Define the routes using the React Router */}
-          <Routes></Routes>
-        </div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
         <Footer />
       </Router>
     </div>
@@ -19,10 +30,3 @@ function App() {
 }
 
 export default App;
-
-// drop the link of your hosted front-end  and Github Repo at the start of the presentation
-// demo the site and show responsiveness of one page (please spend less than 1 minute)
-// components created
-// show your routes created
-// display your database
-// be mindful of time - each person has a 10min window that includes time for questions.
