@@ -1,0 +1,361 @@
+/* General styles */
+.home-page {
+  font-family: "Arial", sans-serif;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  color: white;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url("../images/home.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #98b66e;
+}
+
+.hero-section .hero-content {
+  z-index: 1;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  transform: translateY(10%); /* Moves the box down slightly */
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.hero-section .btn {
+  padding: 15px 40px;
+  font-size: 1.3rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-section .btn:hover {
+  background-color: #446e3d;
+}
+
+/* Statistics Section Title */
+.stats-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Statistics Section */
+.stats-section {
+  padding: 60px 20px;
+  background-color: #c4dca4;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stats-section .row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.stats-section .col-md-3 {
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.stats-section .col-md-3:hover {
+  transform: scale(1.05);
+}
+
+.stats-section h3 {
+  font-size: 2.2rem;
+  color: #558b6e;
+}
+
+.stats-section p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Testimonial Section */
+.testimonial-section {
+  padding: 60px 20px;
+  background-color: #f1f7fc; /* Light background color */
+}
+
+.testimonial-section .container {
+  display: flex;
+  justify-content: center;
+}
+
+.testimonial-section .testimonial-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+}
+
+.testimonial-section .testimonial-content {
+  flex: 1;
+  max-width: 48%;
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-section .testimonial-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjusted for larger images with responsive scaling */
+.testimonial-section .testimonial-img {
+  margin-bottom: 20px;
+  border-radius: 50%;
+  width: 250px; /* Default size for larger screens */
+  height: 250px;
+  aspect-ratio: 1/1;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Media Queries for stacking testimonials on smaller screens */
+@media (max-width: 992px) {
+  .testimonial-section .testimonial-img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-section .testimonial-img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonial-section .testimonial-row {
+    flex-direction: column; /* Stack testimonials vertically */
+    align-items: center;
+  }
+
+  .testimonial-section .testimonial-content {
+    max-width: 100%; /* Full width for each testimonial */
+    margin-bottom: 20px;
+  }
+
+  .testimonial-section .testimonial-img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.testimonial-section .testimonial-quote {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial-section .testimonial-author {
+  font-weight: bold;
+  color: #0056b3; /* Dark blue color for emphasis */
+  font-size: 1.3rem;
+  margin-top: 20px;
+}
+
+.testimonial-section .testimonial-role {
+  color: #555;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+/* Goals Section */
+.goals-section {
+  padding: 60px 20px;
+  background-color: #c4dca4;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.goals-section h3 {
+  font-size: 2.2rem;
+  color: #558b6e;
+  transition: color 0.3s ease;
+}
+
+.goals-section p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.goals-section .col-md-4 {
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.goals-section .col-md-4:hover {
+  transform: translateY(-5px);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Additional Media Queries for Tablet and Mobile Views */
+@media (max-width: 992px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1.2rem;
+  }
+
+  .hero-section .btn {
+    font-size: 1rem;
+    padding: 10px 30px;
+  }
+
+  .stats-section h3 {
+    font-size: 1.8rem;
+  }
+
+  .stats-section p {
+    font-size: 1rem;
+  }
+
+  .testimonial-section .testimonial-text {
+    font-size: 1.1rem;
+  }
+
+  .testimonial-section .testimonial-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .goals-section h2 {
+    font-size: 2.2rem;
+  }
+
+  .goals-section h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .hero-section .btn {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+
+  .stats-section h3 {
+    font-size: 1.6rem;
+  }
+
+  .stats-section p {
+    font-size: 0.9rem;
+  }
+
+  .testimonial-section .testimonial-text {
+    font-size: 1rem;
+  }
+
+  .testimonial-section .testimonial-img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .goals-section h2 {
+    font-size: 2rem;
+  }
+
+  .goals-section h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    height: 50vh;
+    background-position: top;
+  }
+
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-section p {
+    font-size: 0.8rem;
+  }
+
+  .hero-section .btn {
+    font-size: 0.8rem;
+    padding: 6px 16px;
+  }
+
+  .stats-section h3 {
+    font-size: 1.4rem;
+  }
+
+  .stats-section p {
+    font-size: 0.8rem;
+  }
+
+  .testimonial-section .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  .testimonial-section .testimonial-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .goals-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .goals-section h3 {
+    font-size: 1.5rem;
+  }
+}
