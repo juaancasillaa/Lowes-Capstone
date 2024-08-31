@@ -1,4 +1,3 @@
-// src/pages/SignupPage.jsx
 import React from "react";
 import "../css/SignupPage.css";
 
