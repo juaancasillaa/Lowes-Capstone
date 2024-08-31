@@ -20,7 +20,7 @@ const LoginForm = () => {
     let validationErrors = {};
 
     if (!email || !validateEmail(email)) {
-      validationErrors.email = 'Please enter a valid email address.';
+      validationErrors.email = 'Please enter valid email address.';
     }
 
     if (!password) {
