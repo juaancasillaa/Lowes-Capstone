@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Navbar.css';
-import Logo from '../image/SPARK.png';
+import Logo from '../images/SPARK.png';
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
