@@ -13,12 +13,6 @@ app.use(express.static(path.join(__dirname, "..", "build")));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "build", "index.html"));
   });
-  
-// API route example (optional, add as needed)
-app.get("/api/hello", (req, res) => {
-    res.send({ message: "Hello from the server!" });
-  });
-  
 
 // ----------Database connection setup-----------
 
@@ -41,7 +35,7 @@ app.post('/api/login', async (req, res) => {
 
   try {
     const result = await pool.query(
-      'SELECT * FROM Login WHERE email = $1 AND password = $2',
+      'SELECT * FROM Login WHERE email = ? AND password = ?',
       [email, password]
     );
 
