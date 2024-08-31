@@ -1,0 +1,24 @@
+.calendar-app {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .calendar-container {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .event-form {
+    flex: 1;
+    margin-left: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Add the rest of the styles from the previous examples */
+  
