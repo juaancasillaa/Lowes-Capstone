@@ -35,7 +35,7 @@ app.post('/api/login', async (req, res) => {
 
   try {
     const result = await pool.query(
-      'SELECT * FROM Login WHERE email = ? AND password = ?',
+      'SELECT * FROM Login WHERE email = $1 AND password = $2',
       [email, password]
     );
 
@@ -48,6 +48,23 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+// Contact Us API Route
+app.post('/api/contact', async (req, res) => {
+    const { firstName, lastName, phoneNumber, email, comment } = req.body;
+  
+    try {
+      const result = await pool.query(
+        'INSERT INTO contactus (first_name, last_name, phone_number, email, message) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [firstName, lastName, phoneNumber, email, comment]
+      );
+  
+      res.status(200).json({ message: 'Form submitted successfully', data: result.rows[0] });
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      res.status(500).json({ error: 'An error occurred. Please try again.' });
+    }
+  });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

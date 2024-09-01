@@ -1,17 +1,15 @@
-// src/components/Footer.jsx
-
 import "../css/Footer.css";
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
-
+import Logo from '../images/SPARK.png';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__addr">
-        <h1 className="footer__logo">Something</h1>
+        <h1 className="footer__logo"><img src={Logo} alt="logo"/></h1>
         
         <h2>Contact</h2>
         
@@ -23,7 +21,7 @@ const Footer = () => {
       </div>
       
 
-     
+     {/* /////// */}
       <ul className="footer__nav">
         
         <li className="nav__item nav__item--extra">
@@ -31,17 +29,21 @@ const Footer = () => {
           
           <ul className="nav__ul nav__ul--extra">
             <li>
-              <a href="#">Hardware Design</a>
-            </li>
-            
-            <li>
-              <a href="#">Software Design</a>
+              <a href="#">Digital Signages</a>
             </li>
             
             <li>
               <a href="#">Digital Signage</a>
             </li>
-               
+            
+            <li>
+              <a href="#">Digital Signage</a>
+            </li>
+            <li>
+              <a href="#">Digital Signage</a>
+            </li>
+            
+   
           </ul>
         </li>
         

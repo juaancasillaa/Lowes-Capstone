@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Navbar.css';
+import Logo from '../images/SPARK.png';
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -23,19 +25,22 @@ const Navbar = () => {
 
   return (
     <nav className={visible ? '' : 'scrollUp'}>
-      <div className="container">
-        <a href="#" id="brand">Brand</a>
+      <div id='text' className="container">
+        <a href="#" id="brand"><img src={Logo} alt="logo"/></a>
         <button onClick={handleMenuToggle}>
           <span></span>
           <span></span>
           <span></span>
         </button>
         <ul className="navbar-menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Page A</a></li>
-          <li><a href="#">Page B</a></li>
-          <li><a href="#">Page C</a></li>
-          <li><a href="#">Page D</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About us</Link></li>
+          <li><Link to="/events">Event</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          <li><Link id='Loging__btn' to="/login">Log in</Link></li>
+          {/* <li><Link to="/">Sign up</Link></li> */}
+
+
         </ul>
       </div>
     </nav>
@@ -43,41 +48,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-// import React from "react";
-// import { Link } from "react-router-dom";
-// import "../css/Navbar.css";
-
-// function Navbar() {
-//   return (
-//     <nav className="navbar">
-//       <div className="navbar-logo">
-//         <Link to="/">Volunteer Tracking System</Link>
-//       </div>
-//       <ul className="navbar-links">
-//         <li>
-//           <Link to="/">Home</Link>
-//         </li>
-//         <li>
-//           <Link to="/about">About</Link>
-//         </li>
-//         <li>
-//           <Link to="/contact">Contact</Link>
-//         </li>
-//         <li>
-//           <Link to="/events">Events</Link>
-//         </li>
-//         <li>
-//           <Link to="/login">Login</Link>
-//         </li>
-//         <li>
-//           <Link to="/signup">Sign Up</Link>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// }
-
-// export default Navbar;

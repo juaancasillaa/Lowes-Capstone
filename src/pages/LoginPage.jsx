@@ -81,7 +81,7 @@ const LoginForm = () => {
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className='login-button'>Login</button>
         {errors.general && <p className="error">{errors.general}</p>}
         <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
       </form>
