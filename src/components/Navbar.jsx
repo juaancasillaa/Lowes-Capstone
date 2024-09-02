@@ -1,50 +1,92 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Navbar.css';
 import Logo from '../images/SPARK.png';
 
-const Navbar = () => {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-      setPrevScrollPos(currentScrollPos);
-    };
+class NavBar extends Component {
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos]);
+  state = { clicked: false };
+  handleClick = () => {
+    this.setState({clicked: !this.state.clicked})
+  }
 
-  const handleMenuToggle = () => {
-    const navbarMenu = document.querySelector('.navbar-menu');
-    navbarMenu.classList.toggle('active');
-  };
-
+  render() {
   return (
-    <nav className={visible ? '' : 'scrollUp'}>
-      <div id='text' className="container">
-        <a href="#" id="brand"><img src={Logo} alt="logo"/></a>
-        <button onClick={handleMenuToggle}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul className="navbar-menu">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About us</Link></li>
-          <li><Link to="/events">Event</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+    <div className="navbar">
+      <nav>
+        <Link    to="/"><img id="brand" src={Logo} alt="logo" /></Link>
+
+          <ul className={ this.state.clicked ? "nav-menu" : "nav-menu active" }>
+          <li><Link className='navtext' to="/">Home</Link></li>
+          <li><Link className='navtext' to="/about">About us</Link></li>
+          <li><Link className='navtext' to="/events">Event</Link></li>
+          <li><Link className='navtext' to="/contact">Contact</Link></li>
           <li><Link id='Loging__btn' to="/login">Log in</Link></li>
-          {/* <li><Link to="/">Sign up</Link></li> */}
-
-
         </ul>
-      </div>
+      <div className="mobile-navbar" onClick={this.handleClick}>
+      <i id='bar' className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+    </div>
     </nav>
-  );
-};
+    </div>
 
-export default Navbar;
+  );
+}
+}
+
+export default NavBar;
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import '../css/Navbar.css';
+// import Logo from '../images/SPARK.png';
+
+// const Navbar = () => {
+//   const [showMenu, setShowMenu] = useState(false);
+//   const [showSideMenu, setShowSideMenu] = useState(false);
+
+//   const toggleMenu = () => {
+//     setShowMenu(!showMenu);
+//   };
+
+//   const toggleSideMenu = () => {
+//     setShowSideMenu(!showSideMenu);
+//   };
+
+//   return (
+//     <nav>
+//       <div id='text' className="container">
+//         <a href="#" id="brand" onClick={() => setShowSideMenu(false)}><img src={Logo} alt="logo" /></a>
+//         <div className="hamburger-menu" onClick={toggleSideMenu}>
+//           <div className="bar"></div>
+//           <div className="bar"></div>
+//           <div className="bar"></div>
+//         </div>
+//         <ul className={`navbar-menu ${showMenu ? 'show' : ''}`}>
+//           <li><Link className='navtext' to="/">Home</Link></li>
+//           <li><Link className='navtext' to="/about">About us</Link></li>
+//           <li><Link className='navtext' to="/events">Event</Link></li>
+//           <li><Link className='navtext' to="/contact">Contact</Link></li>
+//           <li><Link id='Loging__btn' to="/login">Log in</Link></li>
+//         </ul>
+//         <div className={`side-menu ${showSideMenu ? 'show' : ''}`}>
+//           <ul>
+//             <li><Link to="/">Home</Link></li>
+//             <li><Link to="/about">About us</Link></li>
+//             <li><Link to="/events">Event</Link></li>
+//             <li><Link to="/contact">Contact</Link></li>
+//             <li><Link to="/login">Log in</Link></li>
+//           </ul>
+//         </div>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
