@@ -33,63 +33,56 @@ function AboutPage() {
       <section className="stats-section text-center py-5">
         <div className="container">
           <div className="row">
-            <div className="col-md-3 col-md-3s">
+            <div className="col-md-3 col-md-3s ">
               <h3>Welcome to Spark</h3>
-              <p>your go-to platform for community service initiatives in the vibrant city of Charlotte. Spark is a digital hub designed to ignite positive change and foster a culture of giving back. Our mission is simple yet powerful: to connect passionate individuals with meaningful volunteer opportunities, creating a ripple effect of impact throughout our city.
+              <p>your go-to platform for community service initiatives within the lively city of Charlotte. At Spark, we've built a digital hub dedicated to fostering a culture of giving back and igniting positive change. Our mission is clear yet impactful: we aim to unite individuals driven by passion with meaningful volunteer opportunities, ultimately creating a ripple effect of positive impact throughout our beloved city.
 
-At Spark, we believe that everyone has the ability to make a difference, no matter how big or small. Whether you're looking to volunteer for a local charity, participate in a community cleanup event, or lend a helping hand to those in need, Spark provides a seamless and user-friendly experience to help you find the perfect opportunity that aligns with your interests and schedule.
-
-Join us in sparking change, building connections, and shaping a brighter future for Charlotte. Together, we can illuminate the path towards a more compassionate and thriving community. Let your light shine and make a difference with Spark today!</p>
+We firmly believe that every person possesses the capacity to make a difference, no matter the scale. Whether you seek to volunteer with a local charity, participate in community cleanup endeavors, or offer assistance to those in need, Spark offers a seamless and user-friendly experience to help you discover the ideal opportunity that resonates with your interests and availability.</p>
             </div>
-
-            <div className="col-md-3 col-md-3s">
-              <img className="whatis" src={whatis}/>
+            <div className="col-md-3 col-md-3s col-md-3ss">
+              <p><img className="whatis " src={whatis}/></p>
             </div>
-           
           </div>
         </div>
       </section>
 
       <section className="stats-sections stats-section text-center py-5">
         <div className="container">
-          <h2 className="stats-title">We Have Helped Communities Thrive</h2>
+          <h3 className="stats-title">Our Guiding Principles</h3>
           <div className="row">
             <div className="col-md-3">
-              <h3>$120M</h3>
-              <p>Funds raised for community projects</p>
+              <h3>Empower</h3>
+              <p>Encouraging individuals to take initiative, make decisions, and reach their full potential</p>
             </div>
             <div className="col-md-3">
-              <h3>250K</h3>
-              <p>Volunteer hours contributed</p>
+              <h3>Collaborate</h3>
+              <p>Promoting teamwork, communication, and cooperation to achieve shared goals and objectives.</p>
             </div>
             <div className="col-md-3">
-              <h3>500+</h3>
-              <p>Community events hosted</p>
+              <h3>Sustain</h3>
+              <p>Promoting environmentally conscious practices, responsible resource management, and a commitment to long-term well-being.</p>
             </div>
           
           </div>
           <div className="row">
             <div className="col-md-3">
-              <h3>10K</h3>
-              <p>Volunteers trained</p>
+              <h3>Engage</h3>
+              <p>Engaging with the community, listening to their needs, and actively contributing to positive social impact and change.</p>
             </div>
             <div className="col-md-3">
-              <h3>50+</h3>
-              <p>Countries involved</p>
+              <h3>Innovate</h3>
+              <p>Embracing creativity, exploring new ideas, and fostering a culture of continuous improvement and learning.</p>
             </div>
-            <div className="col-md-3">
-              <h3>200+</h3>
-              <p>Projects completed</p>
-            </div>
+          
             
           </div>
         </div>
       </section>
 
 
-      <section className="stats-section text-center py-5">
+      {/* <section className="stats-section stats-sections text-center py-5">
         <div className="container">
-          <h2 className="stats-title">Our Team</h2>
+          <h2 className="stats-title">Our Staff</h2>
           <Slider {...settings}>
             <div className="col-md-3 Members">
               <img className="Members-pic" src={Juan} alt="Juan"/>
@@ -112,8 +105,8 @@ Join us in sparking change, building connections, and shaping a brighter future 
               <h3>Vyncent Harris</h3>
             </div>
           </Slider>
-        </div>
-      </section>
+        </div> 
+      </section>*/}
 
    
 

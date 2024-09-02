@@ -77,6 +77,17 @@
     color: #333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
   }
+  .slick-prev:before {
+   
+    color: black !important;
+   
+}
+
+  .slick-next:before {
+  
+    color: black !important;
+
+}
 
 /* .Members-pic{
     margin-top: -80px;
@@ -100,24 +111,29 @@
   
   /* Tablet styles */
   @media only screen and (max-width: 768px) {
-    .about-page {
-      font-size: 1.5em;
+    .col-md-3s {
+      width: 100% !important;
+      margin-top: 25px !important;
+      margin-left: 0;
     }
   
     .Members-pic {
       width: 150px;
       height: 150px;
     }
+
   }
   
   /* Mobile styles */
   @media only screen and (max-width: 480px) {
-    .about-page {
-      font-size: 1.2em;
+    .col-md-3s {
+      width: 100% !important;
+      margin-top: 25px !important;
+      margin-left: 0;
     }
   
     .Members-pic {
       width: 100%;
-      height: 100%;
+      height: auto;
     }
   }
