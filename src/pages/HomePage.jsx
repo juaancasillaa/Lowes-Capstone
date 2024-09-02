@@ -13,7 +13,7 @@ function HomePage() {
           <p className="lead">
             Charity refers to the act of giving or providing assistance...
           </p>
-          <a href="/signup" className="btn btn-primary btn-lg">
+          <a href="/login" className="btn btn-primary btn-lg">
             Get Started
           </a>
         </div>
