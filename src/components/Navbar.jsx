@@ -19,7 +19,7 @@ class NavBar extends Component {
 
           <ul className={ this.state.clicked ? "nav-menu" : "nav-menu active" }>
           <li><Link className='navtext' to="/">Home</Link></li>
-          <li><Link className='navtext' to="/about">About us</Link></li>
+          <li><Link className='navtext' to="/about">About us.</Link></li>
           <li><Link className='navtext' to="/events">Event</Link></li>
           <li><Link className='navtext' to="/contact">Contact</Link></li>
           <li><Link id='Loging__btn' to="/login">Log in</Link></li>
