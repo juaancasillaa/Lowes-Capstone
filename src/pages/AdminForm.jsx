@@ -38,7 +38,7 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
     e.preventDefault();
 
     try {
-      const { lat, lng } = await geocodeAddress(eventForm.address, 'AIzaSyBBaua05KftZN9FqBvtsn4ZM8aJ8m71ubw');
+      const { lat, lng } = await geocodeAddress(eventForm.address, process.env.MAP_KEY);
       const eventDateTime = `${eventForm.date}T${eventForm.time}`;
 
       if (eventForm.id) {
