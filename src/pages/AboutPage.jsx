@@ -69,7 +69,7 @@ We firmly believe that every person possesses the capacity to make a difference,
               <h3>Engage</h3>
               <p>Engaging with the community, listening to their needs, and actively contributing to positive social impact and change.</p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 ">
               <h3>Innovate</h3>
               <p>Embracing creativity, exploring new ideas, and fostering a culture of continuous improvement and learning.</p>
             </div>
@@ -80,11 +80,12 @@ We firmly believe that every person possesses the capacity to make a difference,
       </section>
 
 
-      {/* <section className="stats-section stats-sections text-center py-5">
-        <div className="container">
+      <section className="stats-section stats-sections text-center py-5">
+        <div id="containers" className="container ">
           <h2 className="stats-title">Our Staff</h2>
           <Slider {...settings}>
-            <div className="col-md-3 Members">
+
+            <div className="col-md-3  Members">
               <img className="Members-pic" src={Juan} alt="Juan"/>
               <h3>Juan Casilla</h3>
             </div>
@@ -106,7 +107,7 @@ We firmly believe that every person possesses the capacity to make a difference,
             </div>
           </Slider>
         </div> 
-      </section>*/}
+      </section>
 
    
 
