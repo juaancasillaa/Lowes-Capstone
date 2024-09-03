@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import EventCalendar from './EventCalendar';
 import AdminForm from './AdminForm';
-import MapComponent from './MapComponent'; // Ensure you use this if needed
 import '../css/CalendarApp.css'; // Your styles
 
 const CalendarApp = () => {
@@ -66,23 +65,38 @@ const CalendarApp = () => {
 
   return (
     <div className="calendar-app">
-      <EventCalendar 
-        events={events}
-        handleDateSelect={handleDateSelect}
-        handleEventClick={handleEventClick}
-      />
-      {isAdmin && (
-        <AdminForm 
-          selectedEvent={selectedEvent}
-          addOrUpdateEvent={addOrUpdateEvent}
-          deleteEvent={deleteEvent}
+      <div className="calendar-container">
+        <EventCalendar 
           events={events}
-          setEvents={setEvents} // Pass setEvents as a prop
+          handleDateSelect={handleDateSelect}
+          handleEventClick={handleEventClick}
         />
-      )}
-      <MapComponent events={events} />
-      {/* Ensure MapComponent is used if needed */}
-      {/* <MapComponent events={events} /> */}
+      </div>
+      <div className="admin-form-container">
+        {isAdmin && (
+          <AdminForm 
+            selectedEvent={selectedEvent}
+            addOrUpdateEvent={addOrUpdateEvent}
+            deleteEvent={deleteEvent}
+            events={events}
+            setEvents={setEvents} // Pass setEvents as a prop
+          />
+        )}
+      </div>
+      <div className="event-list-container">
+        <h3>Event List</h3>
+        <ul className="event-list">
+          {events.map((event) => (
+            <li key={event.id} className="event-item">
+              <span>{event.title}</span>
+              <div className="event-actions">
+                <button className="edit-btn" onClick={() => setSelectedEvent(event)}>Edit</button>
+                <button className="delete-btn" onClick={() => deleteEvent(event.id)}>Delete</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -59,16 +59,10 @@
     font-size: 1rem !important;
   }
 
-  .col-md-3s{
-    width: 48%  !important;
-    margin-top: 25px !important;
-    margin-left: 1px;
-  }
-
 
   .whatis{
    width: 100%;
-   height: 100%;
+   height: 397;
   }
 
   .stats-sections{
@@ -89,22 +83,13 @@
 
 }
 
-/* .Members-pic{
-    margin-top: -80px;
-    /* margin-bottom: 100px; */
-    /* width: 250px;
-    height: 350px; */
 
   
-  .Members {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+ 
   
   .Members-pic {
     width: 100%;
-    height: 40vh;
+    height: 35vh;
     padding: 10px;
     
   }
@@ -127,13 +112,89 @@
   /* Mobile styles */
   @media only screen and (max-width: 480px) {
     .col-md-3s {
-      width: 100% !important;
+      width: 80% !important;
       margin-top: 25px !important;
       margin-left: 0;
     }
   
     .Members-pic {
       width: 100%;
-      height: auto;
+      height: 80%;
     }
   }
+/* 
+  @media (max-width: 575px) {
+    .stats-section {
+      height: 100vh; /* Set height to cover the entire screen */
+    /* }
+  
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .stats-title {
+      margin-bottom: 20px; /* Add spacing */
+   /* }
+  
+    .Members {
+      width: 80%; /* Make each member cover the full width */
+  /*    height: 50%;
+    }
+
+  }
+ */ 
+
+ @media only screen and (max-width: 768px) {
+  .stats-sections {
+    padding: 40px 10px; /* Adjust padding for responsiveness */
+  }
+
+  .Members-pic {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 480px) {
+  .stats-sections {
+    padding: 30px 5px; /* Adjust padding for responsiveness */
+  }
+
+  .Members-pic {
+    width: 100%;
+    height: 80%;
+  }
+}
+
+
+@media (min-width: 700px) {
+  .col-md-3 {
+      flex: 0 0 auto;
+    width: 35% !important;
+  }
+}
+/*
+
+@media (min-width: 600px) {
+  .col-md-3 {
+      flex: 0 0 auto;
+    width: 35% !important;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .col-md-3 {
+      flex: 0 0 auto;
+    width: 40% !important;
+  }
+}
+ */
+ @media (min-width: 700px) {
+  .col-md-3s {
+      flex: 0 0 auto;
+      width: 80% !important;
+  }}
