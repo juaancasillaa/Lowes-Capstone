@@ -1,13 +1,13 @@
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import "../css/AboutPage.css";
-import Ricardo from "../images/1RICARDO.png";
-import Vyncent from "../images/1VYNCENT.png";
-import Try from "../images/1TREMON.png";
-import Lourdes from "../images/1LOURDES.png";
-import Juan from "../images/1JUAN.png";
+// import Ricardo from "../images/1RICARDO.png";
+// import Vyncent from "../images/1VYNCENT.png";
+// import Try from "../images/1TREMON.png";
+// import Lourdes from "../images/1LOURDES.png";
+// import Juan from "../images/1JUAN.png";
 import whatis from "../images/whatis.webp";
 
 
@@ -106,7 +106,7 @@ We firmly believe that every person possesses the capacity to make a difference,
             </div>
           </Slider>
         </div> 
-      </section>*/}
+      </section> */}
 
    
 
