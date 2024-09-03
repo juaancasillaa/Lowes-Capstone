@@ -38,7 +38,7 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
     e.preventDefault();
 
     try {
-      const { lat, lng } = await geocodeAddress(eventForm.address, 'YOUR_GOOGLE_MAPS_API_KEY');
+      const { lat, lng } = await geocodeAddress(eventForm.address, 'AIzaSyBBaua05KftZN9FqBvtsn4ZM8aJ8m71ubw');
       const eventDateTime = `${eventForm.date}T${eventForm.time}`;
 
       if (eventForm.id) {
@@ -76,7 +76,7 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
   return (
     <div>
       <form onSubmit={handleSubmit} className="event-form">
-        <h3>{eventForm.id ? 'Edit Event' : 'Add Event'}</h3>
+        <h3 className='header-h3'>{eventForm.id ? 'Edit Event' : 'Add Event'}</h3>
         <div className="form-group">
           <label>Event Name:</label>
           <input

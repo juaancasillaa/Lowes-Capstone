@@ -7,8 +7,7 @@ import EventsPage from "./pages/CalendarApp";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import "./App.css";
-///ccc
+
 function App() {
   return (
     <div className="App">
