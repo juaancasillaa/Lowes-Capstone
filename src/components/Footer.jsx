@@ -25,25 +25,34 @@ const Footer = () => {
       <ul className="footer__nav">
         
         <li className="nav__item nav__item--extra">
-          <h2 className="nav__title">Technology</h2>
+          <h2 className="nav__title">SPARK</h2>
           
           <ul className="nav__ul nav__ul--extra">
             <li>
-              <a href="#">Digital Signages</a>
-            </li>
-            
-            <li>
-              <a href="#">Digital Signage</a>
-            </li>
-            
-            <li>
-              <a href="#">Digital Signage</a>
+              <a href="#">Avout Us</a>
             </li>
             <li>
-              <a href="#">Digital Signage</a>
+              <a href="#">Events</a>
             </li>
-            
-   
+            <li>
+              <br/>
+            </li>
+          </ul>
+        </li>
+
+         <li className="nav__item nav__item--extra">
+          <h2 className="nav__title">What We Do</h2>
+          
+          <ul className="nav__ul nav__ul--extra">
+            <li>
+              <a href="#">Locations</a>
+            </li>
+            <li>
+              <a href="#">Blog</a>
+            </li>
+            <li>
+              <br/>
+            </li>
           </ul>
         </li>
         
