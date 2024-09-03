@@ -40,6 +40,34 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// Contact Form API Route
+app.post('/api/contact', async (req, res) => {
+  const { firstName, lastName, phoneNumber, email, comment } = req.body;
+  
+  console.log('Received contact form data:', {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    comment
+  });
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO contactus (first_name, last_name, email, phone_number, message) VALUES ($1, $2, $3, $4, $5) RETURNING*',
+      [firstName, lastName, phoneNumber, email, comment]
+    );
+    console.log('Contact inserted successfully');
+
+    res.status(200).json({ message: 'Form submitted successfully!' });
+  } catch (error) {
+    console.error('Database query error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

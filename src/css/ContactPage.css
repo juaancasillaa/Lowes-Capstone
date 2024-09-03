@@ -49,7 +49,7 @@ textarea {
 
 input[type="submit"] {
   background-color: #333;
-  color: #fff;
+  color: #98B66E;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -58,4 +58,11 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #555;
+}
+
+.contactFormMessage {
+  margin-top: 15px;
+  text-align: center;
+  color: #c1c1c1; /* Success message color */
+  font-weight: bold;
 }
