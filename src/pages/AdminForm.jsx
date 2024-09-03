@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { geocodeAddress } from '../utils/geocode'; // Import the geocoding function
 import '../css/AdminForm.css'; // Import CSS for styling
 
 const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], setEvents }) => {
@@ -34,36 +33,29 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
     setEventForm({ ...eventForm, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const { lat, lng } = await geocodeAddress(eventForm.address, 'AIzaSyBBaua05KftZN9FqBvtsn4ZM8aJ8m71ubw');
-      const eventDateTime = `${eventForm.date}T${eventForm.time}`;
+    const eventDateTime = `${eventForm.date}T${eventForm.time}`;
 
-      if (eventForm.id) {
-        const updatedEvents = events.map((event) =>
-          event.id === eventForm.id ? { ...eventForm, start: eventDateTime, end: eventDateTime, latitude: lat, longitude: lng } : event
-        );
-        setEvents(updatedEvents);
-      } else {
-        let newEvent = {
-          id: Math.random(),
-          title: eventForm.title,
-          detail: eventForm.detail,
-          address: eventForm.address,
-          start: eventDateTime,
-          end: eventDateTime,
-          latitude: lat,
-          longitude: lng
-        };
-        setEvents([...events, newEvent]);
-      }
-
-      setEventForm({ id: '', title: '', detail: '', address: '', date: '', time: '' });
-    } catch (error) {
-      console.error('Error adding or updating event:', error);
+    if (eventForm.id) {
+      const updatedEvents = events.map((event) =>
+        event.id === eventForm.id ? { ...eventForm, start: eventDateTime, end: eventDateTime } : event
+      );
+      setEvents(updatedEvents);
+    } else {
+      let newEvent = {
+        id: Math.random(),
+        title: eventForm.title,
+        detail: eventForm.detail,
+        address: eventForm.address,
+        start: eventDateTime,
+        end: eventDateTime,
+      };
+      setEvents([...events, newEvent]);
     }
+
+    setEventForm({ id: '', title: '', detail: '', address: '', date: '', time: '' });
   };
 
   const handleDelete = () => {
@@ -74,7 +66,7 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
   };
 
   return (
-    <div>
+    <div className="admin-form-container">
       <form onSubmit={handleSubmit} className="event-form">
         <h3 className='header-h3'>{eventForm.id ? 'Edit Event' : 'Add Event'}</h3>
         <div className="form-group">
@@ -138,7 +130,6 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
           )}
         </div>
       </form>
-      {/* Event list rendering */}
     </div>
   );
 };
