@@ -65,50 +65,56 @@
 /* Statistics Section */
 .stats-section {
   padding: 60px 20px;
-  background-color: #c4dca4;
+  background-color: #fcf8f0; /* Light background color */
   color: #333;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stats-section .row {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-evenly; /* Ensure the columns are evenly spaced */
 }
 
 .stats-section .col-md-3 {
+  flex: 1 1 calc(25% - 10px); /* Ensure 4 items per row with gaps */
   margin-bottom: 20px;
   text-align: center;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(213, 232, 212, 0.3);
   border-radius: 8px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added shadow transition */
 }
 
 .stats-section .col-md-3:hover {
   transform: scale(1.05);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3); /* Slightly more prominent shadow on hover */
 }
 
 .stats-section h3 {
   font-size: 2.2rem;
-  color: #558b6e;
+  color: #466954; /* A slightly darker green for better contrast */
 }
 
 .stats-section p {
   font-size: 1.2rem;
   margin-top: 10px;
+  color: #333333; /* Dark gray for readability */
 }
 
 /* Testimonial Section */
 .testimonial-section {
   padding: 60px 20px;
-  background-color: #f1f7fc; /* Light background color */
+  /* background-color: #f1f7fc; Light background color */
+  background-color: #c4dca4;
 }
 
 .testimonial-section .container {
   display: flex;
   justify-content: center;
+  gap: 30px;
 }
 
 .testimonial-section .testimonial-row {
@@ -201,7 +207,8 @@
 /* Goals Section */
 .goals-section {
   padding: 60px 20px;
-  background-color: #c4dca4;
+  /* background-color: #c4dca4; */
+  background-color: #fcf8f0; /* Light background color */
   color: #333;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -219,7 +226,14 @@
   transition: color 0.3s ease;
 }
 
+.goals-section .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Add some gap between the columns */
+}
+
 .goals-section .col-md-4 {
+  flex: 1;
   margin-bottom: 20px;
   text-align: center;
   padding: 20px;
@@ -227,6 +241,7 @@
   border-radius: 8px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 200px; /* Ensure minimum width for consistency */
 }
 
 .goals-section .col-md-4:hover {
