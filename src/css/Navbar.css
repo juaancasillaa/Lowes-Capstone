@@ -39,17 +39,15 @@
   justify-content: center;
   height: 36px;
   max-width: max-content;
-  background-color: #9fc272;
+  background-color: #98B66E;;
   border-radius: 100px;
-  /* color: #fff ; */
+  color: white ;
   line-height: 0;
-
   margin-top: 0.5rem;
   margin-right: 10px;
   margin-left: 10px;
   font-size: 1rem;
   padding: 0 1rem;
-
   margin: 0.6em 0;
   font-size: 1rem;
   padding: 0 0.8rem;
@@ -57,7 +55,7 @@
 }
 
 #Loging__btn:hover{
-background-color: #9dd850;
+background-color: #79994d;
 color: #fff;
 
 }

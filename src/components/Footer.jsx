@@ -117,9 +117,9 @@ function Footer() {
                 <p className="text-justify">Spark is a dynamic web platform that fosters volunteerism within organizations. Employees can easily sign up for events, while admins manage them through a dedicated dashboard. With Google Maps integration, Spark helps volunteers find and participate in local community activities effortlessly. Explore how Spark simplifies event management and boosts engagement in your organization’s volunteer efforts.</p>
               </div>
 
-              <div className="col-xs-6 col-md-3 resources">
-                <h6 className='header-h6'>Resources</h6>
-                <ul className="footer-links">
+              <div className="col-xs-6 col-md-3 resources-section">
+                <h6 className='header-title'>Resources</h6>
+                <ul className="footer-links-list">
                   <li><a href="https://www.passportjs.org/tutorials/password/prompt/">Passport.js</a></li>
                   <li><a href="https://fullcalendar.io/">FullCalendar API</a></li>
                   <li><a href="https://vercel.com/">DataBase powered by Vercel</a></li>
@@ -127,9 +127,9 @@ function Footer() {
                 </ul>
               </div>
 
-              <div className="col-xs-6 col-md-3 quick-links">
-                <h6 className='header-h6'>Quick Links</h6>
-                <ul className="footer-links">
+              <div className="col-xs-6 col-md-3 quick-links-section">
+                <h6 className='header-title'>Quick Links</h6>
+                <ul className="footer-links-list">
                   <li><a href="/">Home</a></li>
                   <li><a href="/about">About Us</a></li>
                   <li><a href="/events">Events</a></li>
@@ -205,20 +205,20 @@ const FooterContainer = styled.footer`
     text-decoration: none;
   }
 
-  .header-h6 {
+  .header-title {
     padding-left: 80px;
   }
 
-  .footer-links {
+  .footer-links-list {
     padding-left: 80px;
     list-style: none;
   }
 
-  .footer-links li {
+  .footer-links-list li {
     display: block;
   }
 
-  .footer-links a:hover {
+  .footer-links-list a:hover {
     color: #F1ECE4;
     text-decoration: none;
   }
@@ -231,7 +231,7 @@ const FooterContainer = styled.footer`
     max-width: 150px; /* Adjust the size as needed */
   }
 
-  .resources, .quick-links {
+  .resources-section, .quick-links-section {
     margin-top: 80px; /* Adjust this value to move the sections down */
   }
 
@@ -248,11 +248,12 @@ const FooterContainer = styled.footer`
     .site-footer .copyright-text {
       text-align: center;
     }
-    .header-h6 {
+
+    .header-title {
       padding-left: 0;
     }
 
-    .footer-links {
+    .footer-links-list {
       padding-left: 0;
     }
   }

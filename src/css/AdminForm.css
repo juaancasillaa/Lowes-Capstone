@@ -35,8 +35,8 @@
   }
 
   .form-group input:hover,input:focus {
-  border: 2px solid #4A9DEC;
-  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  border: 2px solid #79994d;
+  box-shadow: 0px 0px 0px 7px rgba(100, 195, 97, 0.2);
   background-color: white;
 }
   
