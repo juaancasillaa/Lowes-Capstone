@@ -1,6 +1,10 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #F1ECE4;
+  background-image: url("../images/volunteer1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 20px;
 }
 

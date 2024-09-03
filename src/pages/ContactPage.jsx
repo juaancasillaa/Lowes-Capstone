@@ -52,7 +52,7 @@ const ContactPage = () => {
 
     return (
         <div>
-            <h1>Contact Us</h1>
+            <h1>Questions, comments or concerns please contact us below!</h1>
             <form id="contactForm" onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First Name:</label>
                 <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
