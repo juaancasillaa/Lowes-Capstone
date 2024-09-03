@@ -78,7 +78,7 @@ a{
     height: 40px;
     margin-top: 20px;
     border: none;
-    float: right;
+    float: center;
     display: inline-block;
     cursor: pointer;
     display: none;}
