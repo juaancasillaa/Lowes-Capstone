@@ -12,7 +12,7 @@ import whatis from "../images/whatis.webp";
 
 
 function AboutPage() {
-  const settings = {
+  const setting = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -79,8 +79,8 @@ We firmly believe that every person possesses the capacity to make a difference,
         </div>
       </section>
 
-{/* 
-      <section className="stats-section stats-sections text-center py-5">
+
+      {/* <section className="stats-section stats-sections text-center py-5">
         <div id="containers" className="container ">
           <h2 className="stats-title">Our Staff</h2>
           <div className="row">
