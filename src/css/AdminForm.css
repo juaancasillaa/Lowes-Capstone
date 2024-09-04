@@ -4,12 +4,12 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
-    width: 300px;
+    width: 800px;
   }
   
   .header-h3 {
     text-align: center;
-    color: #98B66E;
+    color: #79994d;
   }
   
   .form-group {
@@ -46,18 +46,18 @@
     gap: 10px;
   }
   
-  .submit-btn {
+  .btn-submit {
     display: inline-block;
     padding: 10px 15px;
-    background-color: #28a745;
+    background-color: #98B66E;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   
-  .submit-btn:hover {
-    background-color: #218838;
+  .btn-submit:hover {
+    background-color: #79994d;
   }
   
   .delete-btn {
@@ -93,7 +93,7 @@
     background-color: #f9f9f9;
   }
   
-  .event-actions button {
+  .event-actions .btn-submit {
     margin-left: 10px;
     padding: 5px 10px;
     border: none;

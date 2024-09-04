@@ -2,6 +2,9 @@ import React from "react";
 import "../css/HomePage.css";
 import image1 from "../images/pexels-olly-762020 (5).jpg"; // Importing images
 import image2 from "../images/pexels-thyrone-paas-840706-1722198 (5).jpg"; // Importing images
+import Engage from "../images/image.png"
+import Expand from "../images/image2.png"
+import Support from "../images/image3.png"
 
 function HomePage() {
   return (
@@ -9,11 +12,9 @@ function HomePage() {
       {/* Hero Section */}
       <section className="hero-section text-center">
         <div className="hero-content">
-          <h1>Giving is the only true acquisition, we get only as we give.</h1>
-          <p className="lead">
-            Charity refers to the act of giving or providing assistance...
-          </p>
-          <a href="/login" className="btn btn-primary btn-lg">
+          <h1 className="hero-h1">Supporting Projects & Realizing Kindness.</h1>
+          <p className="lead">Empowering Employee Volunteering.</p>
+          <a href="/login" className="btn btn-lg">
             Get Started
           </a>
         </div>
@@ -95,32 +96,21 @@ function HomePage() {
       </section>
 
       {/* Goals Section */}
-      <section className="goals-section text-center py-5">
+      <section className="goals-section">
         <div className="container">
-          <h2>Our Goals Are...</h2>
+          <h2 className="goals-h2">Our Goals</h2>
           <div className="row">
             <div className="col-md-4">
-              <h3>Engage 5,000 Employees</h3>
-              <p>
-                Our goal is to motivate and engage 5,000 employees to volunteer
-                in various community projects by the end of the year.
-              </p>
+              <img src={Engage} className="section2" alt="Engage"></img>
+              <h3 className="goals-h3">Engage 5,000 Employees</h3>
             </div>
             <div className="col-md-4">
-              <h3>Expand Services to 50 Employers</h3>
-              <p>
-                We aim to expand our volunteer matching services to 50
-                additional employers, helping them find meaningful ways to
-                contribute to their communities.
-              </p>
+              <img src={Expand} className="section2" alt="Expand"></img>
+              <h3 className="goals-h3">Expand Services to 50 Employers</h3>
             </div>
             <div className="col-md-4">
-              <h3>Support 1,000 Volunteer Events</h3>
-              <p>
-                We are committed to supporting 1,000 volunteer events across
-                various regions, ensuring each event has the resources and
-                volunteers needed to succeed.
-              </p>
+              <img src={Support} className="section2" alt="Support"></img>
+              <h3 className="goals-h3">Support 1,000 Volunteer Events</h3>
             </div>
           </div>
         </div>

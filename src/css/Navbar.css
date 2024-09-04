@@ -30,7 +30,7 @@
 }
 
 .navtext:hover{
-  color: #9dd850 !important;
+  color: #79994d !important;
 }
 
 #Loging__btn {
@@ -39,9 +39,9 @@
   justify-content: center;
   height: 36px;
   max-width: max-content;
-  background-color: #98B66E;;
+  background-color: #79994d;
   border-radius: 100px;
-  color: white ;
+  color: white;
   line-height: 0;
   margin-top: 0.5rem;
   margin-right: 10px;
@@ -55,9 +55,8 @@
 }
 
 #Loging__btn:hover{
-background-color: #79994d;
-color: #fff;
-
+background-color: #98B66E;
+color: white;
 }
 
 a{
