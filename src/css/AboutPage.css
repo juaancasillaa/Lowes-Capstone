@@ -1,22 +1,6 @@
-.about-page{
-    display: flex;
-    justify-content: center;
-    margin-top: 15vh;
-    font-family: Arial, Helvetica, sans-serif;
-    
-}
-
-.about-page .about-page-p{
-    margin-top: 8vh ;
-    font-size: 1.5em;
-    margin-right: 30vw;
-}
-
-.about-page-text{
-    margin-top: 8vh;
-    font-size: 2.5em;
-    position: relative;
-    right: inherit;
+  /* .about-page {
+    font-family: 'Nunito', sans-serif;
+    padding-top: 60px;
   }
 
   .hero-sections {
@@ -27,7 +11,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url("../images/about.jpeg") !important;
+    background-image: url("../images/about-heroimg.png") !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -38,39 +22,50 @@
   .hero-sections .hero-contents {
     z-index: 1;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    transform: translateY(10%); /* Moves the box down slightly */
   }
 
   .hero-sections h1 {
-    font-size: 3rem;
+    font-family: 'Bungee', sans-serif;
+    font-size: 5rem;
     font-weight: bold;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px #000;
   }
 
-  .hero-sections p {
+  .about-p {
     font-size: 1.5rem;
+    font-weight: bold;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px #000;
-  }
-  p{
-    font-size: 1rem !important;
   }
 
+  .about-wlcm {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 20px !important;
+  }
+
+  .about-h3 {
+    font-family: 'Bungee', sans-serif;
+    font-size: 3rem !important;
+    color: #65813e !important;
+  }
 
   .whatis{
-   width: 100%;
-   height: 397;
+   width: 450px;
+   height: 350px;
+   object-fit: cover;
+   border-radius: 15px;
   }
 
   .stats-sections{
     padding: 60px 20px;
-    background-color: #F1ECE4 !important;
     color: #333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
   }
+
+  #unique {
+    padding-bottom: 50px;
+  }
+
   .slick-prev:before {
    
     color: black !important;
@@ -82,11 +77,6 @@
     color: black !important;
 
 }
-
-
-  
- 
-  
   .Members-pic {
     width: 100%;
     height: 35vh;
@@ -197,4 +187,4 @@
   .col-md-3s {
       flex: 0 0 auto;
       width: 80% !important;
-  }}
+  }} 
