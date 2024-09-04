@@ -1,4 +1,4 @@
-.body {
+.contact-page-body {
   font-family: Arial, sans-serif;
   background-color: #F1ECE4;
   background-image: url("../images/volunteer1.jpg");
@@ -6,7 +6,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 20px;
- padding-top: 100px; 
+  padding-top: 100px;
 }
 
 h1 {
