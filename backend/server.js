@@ -15,7 +15,12 @@ const pool = new Pool({
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Enable CORS
+
+const corsOptions = {
+  origin: 'http://localhost:3000', // Adjust this if necessary
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Login API Route
 app.post('/api/login', async (req, res) => {
@@ -66,6 +71,56 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+app.post('/api/events', async (req, res) => {
+  const { event_name, details, address, event_date, event_time } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO events (event_name, details, address, event_date, event_time) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [event_name, details, address, event_date, event_time]
+    );
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    console.error('Database insert error:', error);
+    res.status(500).json({ error: 'Failed to add event' });
+  }
+});
+
+app.put('/api/events/:id', async (req, res) => {
+  const { id } = req.params;
+  const { event_name, details, address, event_date, event_time } = req.body;
+
+  try {
+    const result = await pool.query(
+      'UPDATE events SET event_name = $1, details = $2, address = $3, event_date = $4, event_time = $5 WHERE id = $6 RETURNING *',
+      [event_name, details, address, event_date, event_time, id]
+    );
+    if (result.rowCount > 0) {
+      res.status(200).json(result.rows[0]);
+    } else {
+      res.status(404).json({ error: 'Event not found' });
+    }
+  } catch (error) {
+    console.error('Error updating event:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/events/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('DELETE FROM events WHERE id = $1 RETURNING *', [id]);
+    if (result.rowCount > 0) {
+      res.status(200).json({ message: 'Event deleted successfully' });
+    } else {
+      res.status(404).json({ error: 'Event not found' });
+    }
+  } catch (error) {
+    console.error('Error deleting event:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Start the server
 app.listen(port, () => {

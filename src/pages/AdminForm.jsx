@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../css/AdminForm.css'; // Import CSS for styling
 
-const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], setEvents }) => {
+const AdminForm = ({ selectedEvent, events = [], setEvents }) => {
+  // State to manage form input values
   const [eventForm, setEventForm] = useState({
     id: '',
     title: '',
@@ -12,10 +13,14 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
     time: ''
   });
 
+  // Update form state when a new event is selected
   useEffect(() => {
     if (selectedEvent) {
+      // Split the date and time from the selected event's start datetime
       const eventDate = selectedEvent.start.split('T')[0];
       const eventTime = selectedEvent.start.split('T')[1];
+      
+      // Populate the form with the selected event's details
       setEventForm({
         id: selectedEvent.id,
         title: selectedEvent.title,
@@ -25,43 +30,104 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
         time: eventTime
       });
     } else {
+      // Reset form if no event is selected
       setEventForm({ id: '', title: '', detail: '', address: '', date: '', time: '' });
     }
   }, [selectedEvent]);
 
+  // Handle changes in form input fields
   const handleInputChange = (e) => {
     setEventForm({ ...eventForm, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Handle form submission for adding or updating an event
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    console.log('Submitting form:', eventForm);
+    
+    try {
+      if (eventForm.id) {
+        // Update existing event
+        const response = await fetch(`http://localhost:5000/api/events/${eventForm.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            event_name: eventForm.title,
+            details: eventForm.detail,
+            address: eventForm.address,
+            event_date: eventForm.date,
+            event_time: eventForm.time,
+          }),
+        });
 
-    const eventDateTime = `${eventForm.date}T${eventForm.time}`;
+        console.log('Response status:', response.status);
+        console.log('Response data:', await response.json());
 
-    if (eventForm.id) {
-      const updatedEvents = events.map((event) =>
-        event.id === eventForm.id ? { ...eventForm, start: eventDateTime, end: eventDateTime } : event
-      );
-      setEvents(updatedEvents);
-    } else {
-      let newEvent = {
-        id: Math.random(),
-        title: eventForm.title,
-        detail: eventForm.detail,
-        address: eventForm.address,
-        start: eventDateTime,
-        end: eventDateTime,
-      };
-      setEvents([...events, newEvent]);
-    }
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Error details:', errorData);
+          throw new Error('Failed to update the event');
+        }
 
-    setEventForm({ id: '', title: '', detail: '', address: '', date: '', time: '' });
-  };
+        const updatedEvent = await response.json();
+        // Update the events list with the updated event
+        setEvents(events.map(event => event.id === updatedEvent.id ? updatedEvent : event));
+      } else {
+        // Add a new event
+        const response = await fetch('http://localhost:5000/api/events', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            event_name: eventForm.title,
+            details: eventForm.detail,
+            address: eventForm.address,
+            event_date: eventForm.date,
+            event_time: eventForm.time,
+          }),
+        });
 
-  const handleDelete = () => {
-    if (window.confirm('Are you sure you want to delete this event?')) {
-      deleteEvent(eventForm.id);
+        console.log('Response status:', response.status);
+        console.log('Response data:', await response.json());
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Error details:', errorData);
+          throw new Error('Failed to add the event');
+        }
+
+        const newEvent = await response.json();
+        // Add the new event to the events list
+        setEvents([...events, newEvent]);
+      }
+    
+      // Reset the form after submission
       setEventForm({ id: '', title: '', detail: '', address: '', date: '', time: '' });
+    } catch (error) {
+      console.error('Error saving event:', error);
+    }
+  };  
+
+  // Handle deletion of an event
+  const handleDelete = async () => {
+    if (window.confirm('Are you sure you want to delete this event?')) {
+      try {
+        await fetch(`/api/events/${eventForm.id}`, {
+          method: 'DELETE',
+        });
+        console.log('Event deleted:', eventForm.id);
+
+        // Remove the deleted event from the events list
+        const updatedEvents = events.filter((event) => event.id !== eventForm.id);
+        setEvents(updatedEvents);
+        // Reset the form after deletion
+        setEventForm({ id: '', title: '', detail: '', address: '', date: '', time: '' });
+      } catch (error) {
+        console.error('Error deleting event:', error);
+      }
     }
   };
 
@@ -120,7 +186,7 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
           />
         </div>
         <div className="form-actions">
-          <button type="submit">
+          <button type="submit" className='btn-submit'>
             {eventForm.id ? 'Update Event' : 'Add Event'}
           </button>
           {eventForm.id && (
@@ -136,10 +202,8 @@ const AdminForm = ({ selectedEvent, addOrUpdateEvent, deleteEvent, events = [], 
 
 AdminForm.propTypes = {
   selectedEvent: PropTypes.object,
-  addOrUpdateEvent: PropTypes.func.isRequired,
-  deleteEvent: PropTypes.func.isRequired,
   events: PropTypes.array,
-  setEvents: PropTypes.func.isRequired // Add setEvents to prop types
+  setEvents: PropTypes.func.isRequired,
 };
 
 export default AdminForm;

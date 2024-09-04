@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import EventCalendar from './EventCalendar';
 import AdminForm from './AdminForm';
-import '../css/CalendarApp.css'; // Your styles
+import '../css/CalendarApp.css'; // Import CSS for styling
 
 const CalendarApp = () => {
+  // State to manage the list of events
   const [events, setEvents] = useState([
     { id: 1, title: 'Event 1', detail: 'Detail 1', address: 'Address 1', start: '2024-08-30T10:00', end: '2024-08-30T12:00' },
   ]);
 
+  // State to manage the currently selected event
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [isAdmin] = useState(true); // Keep isAdmin state if you plan to use it later
 
+  // State to manage admin privileges; can be extended or modified later
+  const [isAdmin] = useState(true);
+
+  // Handle date selection on the calendar to add a new event
   const handleDateSelect = (selectInfo) => {
     setSelectedEvent(null); // Reset form for a new event
     const title = prompt('Enter a title for your event');
@@ -19,53 +24,60 @@ const CalendarApp = () => {
     calendarApi.unselect(); // Clear date selection
 
     if (title) {
+      // Create a new event with user-provided title and default details
       let newEvent = {
-        id: Math.random(),
+        id: Math.random(), // Unique ID for the event
         title,
         detail: 'No details added',
         address: 'No address added',
-        start: `${selectInfo.startStr}T10:00`,
-        end: `${selectInfo.endStr}T12:00`,
+        start: `${selectInfo.startStr}T10:00`, // Default start time
+        end: `${selectInfo.endStr}T12:00`, // Default end time
       };
-      setEvents([...events, newEvent]);
+      setEvents([...events, newEvent]); // Add new event to the state
     }
   };
 
+  // Handle clicking on an event to select it
   const handleEventClick = (clickInfo) => {
     const clickedEvent = events.find((event) => event.id === clickInfo.event.id);
-    setSelectedEvent(clickedEvent);
+    setSelectedEvent(clickedEvent); // Set the selected event
   };
 
+  // Add or update an event based on the form data
   const addOrUpdateEvent = (eventForm) => {
     const eventDateTime = `${eventForm.date}T${eventForm.time}`;
 
     if (eventForm.id) {
+      // Update existing event
       const updatedEvents = events.map((event) =>
         event.id === eventForm.id ? { ...eventForm, start: eventDateTime, end: eventDateTime } : event
       );
-      setEvents(updatedEvents);
+      setEvents(updatedEvents); // Update state with the modified events list
     } else {
+      // Add a new event
       let newEvent = {
-        id: Math.random(),
+        id: Math.random(), // Unique ID for the new event
         title: eventForm.title,
         detail: eventForm.detail,
         address: eventForm.address,
         start: eventDateTime,
         end: eventDateTime,
       };
-      setEvents([...events, newEvent]);
+      setEvents([...events, newEvent]); // Add new event to the state
     }
   };
 
+  // Delete an event by its ID
   const deleteEvent = (eventId) => {
     const updatedEvents = events.filter((event) => event.id !== eventId);
-    setEvents(updatedEvents);
-    setSelectedEvent(null);
+    setEvents(updatedEvents); // Update state with the remaining events
+    setSelectedEvent(null); // Clear the selected event
   };
 
   return (
     <div className="calendar-app">
       <div className="calendar-container">
+        {/* Render the calendar component */}
         <EventCalendar 
           events={events}
           handleDateSelect={handleDateSelect}
@@ -73,13 +85,14 @@ const CalendarApp = () => {
         />
       </div>
       <div className="admin-form-container">
+        {/* Render the admin form if the user is an admin */}
         {isAdmin && (
           <AdminForm 
             selectedEvent={selectedEvent}
             addOrUpdateEvent={addOrUpdateEvent}
             deleteEvent={deleteEvent}
             events={events}
-            setEvents={setEvents} // Pass setEvents as a prop
+            setEvents={setEvents} // Pass setEvents to the AdminForm for event management
           />
         )}
       </div>

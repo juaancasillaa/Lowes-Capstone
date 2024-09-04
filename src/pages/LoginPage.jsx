@@ -53,13 +53,24 @@ const LoginForm = () => {
   };
 
   return (
-    <>
-      <div className='login-container'>
+    <div className='login-page'>
+      <div className='login-left'>
+        <div className='login-help'>
+          <h3>How to Log In:</h3>
+          <p>1. Enter your registered email address and password in the fields provided.</p>
+          <p>2. Click the "Login" button to access the admin portal.</p>
+          <p>3. If you forget your password, click on the "Forgot Password?" link to reset it.</p>
+  
+          <h3>Need Help?</h3>
+          <p>If you encounter any issues logging in or need further assistance, please contact our support team at support@sparkcommunity.org or call 1-800-555-SPARK during business hours.</p>
+        </div>
+      </div>
+      <div className='login-right'>
         <div className="login-form">
-          <h1 className='admin-login'>Admin Login</h1>
-          <h4>For administrator use only</h4>
+          <img src={Logo} alt="spark-logo" />
+          <h5>For administrator use only</h5>
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div className="login-form-group">
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
@@ -70,7 +81,7 @@ const LoginForm = () => {
               />
               {errors.email && <p className="error">{errors.email}</p>}
             </div>
-            <div className="form-group">
+            <div className="login-form-group">
               <label htmlFor="password">Password:</label>
               <input
                 type="password"
@@ -86,17 +97,8 @@ const LoginForm = () => {
             <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
           </form>
         </div>
-        <div className='login-help'>
-          <h3>How to Log In:</h3>
-          <p>1. Enter your registered email address and password in the fields provided.</p>
-          <p>2. Click the "Login" button to access the admin portal.</p>
-          <p>3. If you forget your password, click on the "Forgot Password?" link to reset it.</p>
-  
-          <h3>Need Help?</h3>
-          <p>If you encounter any issues logging in or need further assistance, please contact our support team at support@sparkcommunity.org or call 1-800-555-SPARK during business hours.</p>
-        </div>
       </div>
-    </>
+    </div>
   );  
 };
 
