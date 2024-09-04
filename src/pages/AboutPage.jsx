@@ -26,7 +26,7 @@
 //       <section className="hero-sections text-center">
 //         <div className="hero-contents">
 //           <h1>We are SPARK</h1>
-//           <p className="about-p">Be a Welcomer by volunteering, engaging your business, and more.</p>
+//           <p className="about-p">By volunteering, engage your business, and more.</p>
 //         </div>
 //       </section>
 

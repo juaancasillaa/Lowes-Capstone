@@ -5,21 +5,22 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 20px;
-  padding-top: 100px;
+  padding: 150px;
+  padding-top: 100px; 
 }
 
-h1 {
+.contact-h1 {
   text-align: center;
   color: #79994D;
-  margin-top: 20 px;
+  margin-top: 20px;
+  padding: 30px;
 }
 
 #contactForm {
   background-color: #98B66E;
   border-radius: 5px;
   padding: 20px;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 50 px;
 }
