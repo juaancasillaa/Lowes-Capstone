@@ -2,9 +2,18 @@
 .calendar-container {
     width: 800px;
 }
+
+a {
+    color: #79994d !important;
+}
   
 .fc .fc-scrollgrid-liquid {
     color: black;
+}
+
+#fc-dom-86 {
+    font-family: 'Bungee', sans-serif;
+    font-size: 3rem;
 }
   
 .fc-toolbar-title {

@@ -1,4 +1,4 @@
-.contact-page-body {
+.body {
   font-family: 'Bungee', sans-serif;
   background-color: #F1ECE4;
   background-image: url("../images/greengradient.jpg");
@@ -17,7 +17,7 @@
 }
 
 #contactForm {
-  background-color: #98B66E;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   padding: 20px;
   max-width: 500px;
@@ -26,10 +26,8 @@
 }
 
 label,
-input,
 select,
-textarea,
-input[type="submit"] {
+textarea {
   display: block;
   margin-bottom: 10px;
 }
@@ -38,7 +36,6 @@ label {
   font-weight: bold;
 }
 
-input,
 select,
 textarea {
   width: 100%;
@@ -47,16 +44,35 @@ textarea {
   border-radius: 3px;
 }
 
-input[type="submit"] {
+.contact-input {
+    border: 2px solid #ccc;
+    width: 100%;
+    height: 2.5em;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+.contact-input:hover, .contact-input:focus {
+  border: 2px solid #79994d;
+  box-shadow: 0px 0px 0px 7px rgba(100, 195, 97, 0.2);
+  background-color: white;
+}
+
+.cnct-submit {
+  width: 100%;
   background-color: #333;
   color: #98B66E;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-input[type="submit"]:hover {
+.cnct-submit:hover {
   background-color: #555;
 }
 

@@ -21,21 +21,21 @@ function Footer() {
               <div className="col-xs-6 col-md-3 resources-section">
                 <h6 className='header-title'>Resources</h6>
                 <ul className="footer-links-list">
-                  <li><a href="https://www.passportjs.org/tutorials/password/prompt/">Passport.js</a></li>
-                  <li><a href="https://fullcalendar.io/">FullCalendar API</a></li>
-                  <li><a href="https://vercel.com/">DataBase powered by Vercel</a></li>
-                  <li><a href="https://vercel.com/">Powered By Vercel</a></li>
+                  <li><a className="atributte" href="https://www.passportjs.org/tutorials/password/prompt/">Passport.js</a></li>
+                  <li><a className="atributte" href="https://fullcalendar.io/">FullCalendar API</a></li>
+                  <li><a className="atributte" href="https://vercel.com/">DataBase powered by Vercel</a></li>
+                  <li><a className="atributte" href="https://vercel.com/">Powered By Vercel</a></li>
                 </ul>
               </div>
 
               <div className="col-xs-6 col-md-3 quick-links-section">
                 <h6 className='header-title'>Quick Links</h6>
                 <ul className="footer-links-list">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/about">About Us</a></li>
-                  <li><a href="/events">Events</a></li>
-                  <li><a href="/contact">Contact Us</a></li>
-                  <li><a href="/login">LogIn</a></li>
+                  <li><a className="atributte" href="/">Home</a></li>
+                  <li><a className="atributte" href="/about">About Us</a></li>
+                  <li><a className="atributte" href="/events">Events</a></li>
+                  <li><a className="atributte" href="/contact">Contact Us</a></li>
+                  <li><a className="atributte" href="/login">LogIn</a></li>
                 </ul>
               </div>
             </div>
@@ -46,21 +46,21 @@ function Footer() {
             <div className="row">
               <div className="col-md-8 col-sm-6 col-xs-12">
                 <p className="copyright-text">Copyright &copy; 2024 All Rights Reserved by  
-                  <a href="/">Spark</a>.
+                  <a className="atributte" href="/">Spark</a>.
                 </p>
               </div>
               <div className="col-md-4 col-sm-6 col-xs-12">
                 <SocialIcons>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                  <a className="atributte" href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                     <FaFacebookF />
                   </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                  <a className="atributte" href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                     <FaTwitter />
                   </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <a className="atributte" href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                     <FaInstagram />
                   </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <a className="atributte" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                     <FaLinkedinIn />
                   </a>
                 </SocialIcons>
@@ -97,12 +97,12 @@ const FooterContainer = styled.footer`
     letter-spacing: 2px;
   }
 
-  .site-footer a {
-    color: white;
+  .site-footer .atributte {
+    color: white !important;
   }
 
-  .site-footer a:hover {
-    color: #F1ECE4;
+  .site-footer .atributte:hover {
+    color: #F1ECE4 !important;
     text-decoration: none;
   }
 
@@ -119,7 +119,7 @@ const FooterContainer = styled.footer`
     display: block;
   }
 
-  .footer-links-list a:hover {
+  .footer-links-list .atibutte:hover {
     color: #F1ECE4;
     text-decoration: none;
   }
