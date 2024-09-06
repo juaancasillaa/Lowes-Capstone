@@ -36,8 +36,8 @@ const ContactPage = () => {
                         email: '',
                         comment: ''
                     });
-                    setFormMessage('Thank you for your message! We will get back to you within 24 hours.');
                     setErrors({});
+                    setFormMessage('Thank you for your message! We will get back to you within 24 hours.');
                 } else {
                     setFormMessage('Error submitting the form. Please try again.');
                 }
@@ -125,7 +125,9 @@ const ContactPage = () => {
                 </div>
 
                 <button className="cnct-submit" type="submit" value="Submit">Submit</button>
+                {formMessage && <p className="form-message">{formMessage}</p>}
             </form>
+           
         </div>
     );
 };
