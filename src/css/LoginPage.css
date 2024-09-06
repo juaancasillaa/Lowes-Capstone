@@ -40,7 +40,7 @@
 }
 
 .login-form img {
-    width: 120px; 
+    width: 200px; 
     height: auto;
     margin-bottom: 1rem;
 }
@@ -83,17 +83,6 @@
 
 .login-button:hover {
     background-color: #79994d;
-}
-
-.forgot-password-link {
-    display: block;
-    margin-top: 1rem;
-    color: #87aa55;
-    text-decoration: none;
-}
-
-.forgot-password-link:hover {
-    text-decoration: underline;
 }
 
 /* Responsive styling for screens with a max-width of 992px */
