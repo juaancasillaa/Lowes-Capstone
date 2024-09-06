@@ -9,7 +9,6 @@ body {
 .home-page {
   color: black;
   background-color: #f5f5f5;
-  padding-top: 60px;
 }
 
 /* Hero Section */
@@ -138,7 +137,7 @@ body {
 
 .testimonial-section .testimonial-content {
   flex: 1;
-  max-width: 48%;
+  width: 48%;
   text-align: center;
   padding: 40px;
   background-color: white;
@@ -193,7 +192,18 @@ body {
     width: 180px;
     height: 180px;
   }
+  .section2 {
+    width: 180px;
+    height: 180px;
 }
+.testimonial-section .container {
+  flex-direction: column;
+}
+.testimonial-section .testimonial-content{
+  width: 100%;
+}  
+}
+
 
 @media (max-width: 576px) {
   .testimonial-section .testimonial-row {
@@ -400,5 +410,16 @@ body {
 
   .goals-section h3 {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width:425px){
+  .stats-title{
+    font-size: 2.5rem;
+  }
+}
+@media (max-width:320px){
+  .stats-title{
+    font-size: 2rem;
   }
 }

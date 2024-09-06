@@ -89,6 +89,7 @@
 @media (max-width: 992px) {
     .login-page {
         flex-direction: column-reverse; 
+        margin-top: 100px;
     }
 
     .login-left,
@@ -104,5 +105,17 @@
 
     .login-right {
         padding: 1rem;
+    }
+}
+
+@media (max-width: 425px){
+    .login-page {
+        height: 110vh;
+    }
+}
+
+@media (max-width: 360px){
+    .login-page {
+        height: 120vh;
     }
 }

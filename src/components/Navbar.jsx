@@ -22,8 +22,7 @@ const NavbarWithAuth = () => {
   };
 
   return (
-    <div className="navbar">
-      <nav>
+      <nav className='navbar'>
         <Link to="/">
           <img id="brand" src={Logo} alt="logo" />
         </Link>
@@ -52,7 +51,6 @@ const NavbarWithAuth = () => {
           <i id='bar' className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>
       </nav>
-    </div>
   );
 };
 

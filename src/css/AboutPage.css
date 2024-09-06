@@ -124,3 +124,19 @@
 
   }
  
+  @media (max-width:425px){
+    #statics-title {
+      font-size: 2.5rem;
+    }
+  }
+  @media (max-width:320px){
+    #statics-title {
+      font-size: 2rem;
+    }
+    .slick-next {
+      right: -20px;
+  }
+  .slick-prev {
+    left: -20px;
+}
+  }
