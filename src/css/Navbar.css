@@ -41,10 +41,10 @@
   max-width: max-content;
   background-color: #79994d;
   border-radius: 100px;
-  color: white;
   font-size: 1rem;
   padding: 0 1rem;
   margin: 0.6em 0;
+  color: white !important;
 }
 
 #login__btn:hover, #logout__btn:hover {
