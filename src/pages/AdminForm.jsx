@@ -56,14 +56,14 @@ const AdminForm = ({ selectedEvent, events = [], setEvents }) => {
 
     try {
       const response = eventForm.id
-        ? await fetch(`http://localhost:5000/api/events/${eventForm.id}`, {
+        ? await fetch(`http://localhost:5000/events/${eventForm.id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(eventPayload),
           })
-        : await fetch('http://localhost:5000/api/events', {
+        : await fetch('http://localhost:5000/events', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const AdminForm = ({ selectedEvent, events = [], setEvents }) => {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       try {
-        await fetch(`http://localhost:5000/api/events/${eventForm.id}`, {
+        await fetch(`http://localhost:5000/events/${eventForm.id}`, {
           method: 'DELETE',
         });
         console.log('Event deleted:', eventForm.id);

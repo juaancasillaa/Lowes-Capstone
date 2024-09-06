@@ -19,7 +19,7 @@ const UserEventsCalendar = ({ handleDateSelect }) => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/events');
+        const response = await fetch('http://localhost:5000/events');
         const data = await response.json();
 
         // Map the fetched events to match FullCalendar's event format

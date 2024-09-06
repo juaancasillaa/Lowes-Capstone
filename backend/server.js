@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 // Login API Route
-app.post('/api/login', async (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   console.log('Received login request:', email);
 
@@ -52,7 +52,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Contact Form API Route
-app.post('/api/contact', async (req, res) => {
+app.post('/contact', async (req, res) => {
   const { firstName, lastName, phoneNumber, email, comment } = req.body;
   
   console.log('Received contact form data:', {
@@ -77,7 +77,7 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-app.get('/api/events', async (req, res) => {
+app.get('/events', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM events');
     res.status(200).json(result.rows);
@@ -87,7 +87,7 @@ app.get('/api/events', async (req, res) => {
   }
 });
 
-app.post('/api/events', async (req, res) => {
+app.post('/events', async (req, res) => {
   const { title, details, address, startdate, enddate } = req.body;
 
   if (!startdate || !enddate) {
@@ -108,7 +108,7 @@ app.post('/api/events', async (req, res) => {
 
 
 // Update Event Query
-app.put('/api/events/:id', async (req, res) => {
+app.put('/events/:id', async (req, res) => {
   const { id } = req.params;
   const { title, details, address, startdate, enddate } = req.body;
 
@@ -128,7 +128,7 @@ app.put('/api/events/:id', async (req, res) => {
   }
 });
 
-app.delete('/api/events/:id', async (req, res) => {
+app.delete('/events/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
