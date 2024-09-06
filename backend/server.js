@@ -3,11 +3,12 @@ const { Pool } = require('pg');
 const cors = require('cors');
 const bcrypt = require('bcryptjs'); // For password hashing
 const app = express();
+const port = 5000;
 require('dotenv').config();
 
 // PostgreSQL connection setup
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL,
+  connectionString: process.env.POSTGRES_URL, 
   ssl: {
     rejectUnauthorized: false
   }
@@ -16,11 +17,10 @@ const pool = new Pool({
 // Middleware
 app.use(express.json());
 
-
 app.use(cors());
 
 // Login API Route
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   console.log('Received login request:', email);
 
@@ -46,15 +46,15 @@ app.post('/login', async (req, res) => {
       res.status(401).json({ error: 'Invalid email or password' });
     }
   } catch (error) {
-    console.error('Database query error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Database query error:', error.message);
+    res.status(500).json({ error: error.message });
   }
 });
 
 // Contact Form API Route
-app.post('/contact', async (req, res) => {
+app.post('/api/contact', async (req, res) => {
   const { firstName, lastName, phoneNumber, email, comment } = req.body;
-
+  
   console.log('Received contact form data:', {
     firstName,
     lastName,
@@ -72,22 +72,22 @@ app.post('/contact', async (req, res) => {
 
     res.status(200).json({ message: 'Form submitted successfully!' });
   } catch (error) {
-    console.error('Database query error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Database query error:', error.message);
+    res.status(500).json({ error: error.message });
   }
 });
 
-app.get('/events', async (req, res) => {
+app.get('/api/events', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM events');
     res.status(200).json(result.rows);
   } catch (error) {
-    console.error('Database query error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Database query error:', error.message);
+    res.status(500).json({ error: error.message });
   }
 });
 
-app.post('/events', async (req, res) => {
+app.post('/api/events', async (req, res) => {
   const { title, details, address, startdate, enddate } = req.body;
 
   if (!startdate || !enddate) {
@@ -101,13 +101,14 @@ app.post('/events', async (req, res) => {
     );
     res.status(200).json(result.rows[0]); // The result will include the auto-generated ID
   } catch (error) {
-    console.error('Database insert error:', error);
+    console.error('Database insert error:', error.message);
     res.status(500).json({ error: 'Failed to add event' });
   }
 });
 
+
 // Update Event Query
-app.put('/events/:id', async (req, res) => {
+app.put('/api/events/:id', async (req, res) => {
   const { id } = req.params;
   const { title, details, address, startdate, enddate } = req.body;
 
@@ -122,12 +123,12 @@ app.put('/events/:id', async (req, res) => {
       res.status(404).json({ error: 'Event not found' });
     }
   } catch (error) {
-    console.error('Error updating event:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error updating event:', error.message);
+    res.status(500).json({ error: error.message });
   }
 });
 
-app.delete('/events/:id', async (req, res) => {
+app.delete('/api/events/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -138,10 +139,12 @@ app.delete('/events/:id', async (req, res) => {
       res.status(404).json({ error: 'Event not found' });
     }
   } catch (error) {
-    console.error('Error deleting event:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error deleting event:', error.message);
+    res.status(500).json({ error: error.message });
   }
 });
 
-// Export the app for serverless function handler
-module.exports = app;
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
