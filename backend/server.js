@@ -45,6 +45,16 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.get('/api/events', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM events');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Database query error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Contact Form API Route
 app.post('/api/contact', async (req, res) => {
   const { firstName, lastName, phoneNumber, email, comment } = req.body;
@@ -72,12 +82,12 @@ app.post('/api/contact', async (req, res) => {
 });
 
 app.post('/api/events', async (req, res) => {
-  const { event_name, details, address, event_date, event_time } = req.body;
+  const { title, details, start, end } = req.body;
 
   try {
     const result = await pool.query(
-      'INSERT INTO events (event_name, details, address, event_date, event_time) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [event_name, details, address, event_date, event_time]
+      'INSERT INTO events (title, details, start, "end") VALUES ($1, $2, $3, $4) RETURNING *',
+      [title, details, start, end]
     );
     res.status(200).json(result.rows[0]);
   } catch (error) {
@@ -88,12 +98,12 @@ app.post('/api/events', async (req, res) => {
 
 app.put('/api/events/:id', async (req, res) => {
   const { id } = req.params;
-  const { event_name, details, address, event_date, event_time } = req.body;
+  const { title, details, start, end } = req.body;
 
   try {
     const result = await pool.query(
-      'UPDATE events SET event_name = $1, details = $2, address = $3, event_date = $4, event_time = $5 WHERE id = $6 RETURNING *',
-      [event_name, details, address, event_date, event_time, id]
+      'UPDATE events SET title = $1, details = $2, start = $3, "end" = $4 WHERE id = $5 RETURNING *',
+      [title, details, start, end, id]
     );
     if (result.rowCount > 0) {
       res.status(200).json(result.rows[0]);
