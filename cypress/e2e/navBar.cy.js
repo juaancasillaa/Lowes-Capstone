@@ -3,7 +3,7 @@ describe('Navbar', () => {
       cy.visit('http://localhost:3000'); // Update the URL to match the homepage URL
       cy.get('.navbar').should('be.visible');
       cy.get('.navtext').eq(0).should('contain', 'Home');
-      cy.get('.navtext').eq(1).should('contain', 'About us');
+      cy.get('.navtext').eq(1).should('contain', 'About Us');
       cy.get('.navtext').eq(2).should('contain', 'Event');
       cy.get('.navtext').eq(3).should('contain', 'Contact');
       cy.get('#Loging__btn').should('contain', 'Log in');
