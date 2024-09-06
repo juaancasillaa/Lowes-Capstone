@@ -20,9 +20,9 @@ const CalendarApp = () => {
         const formattedEvents = data.map(event => ({
           id: event.id,
           title: event.title,
-          start: event.start,
-          end: event.end,
-          detail: event.detail,
+          start: event.startdate,
+          end: event.enddate,
+          detail: event.details,
           address: event.address
         }));
 

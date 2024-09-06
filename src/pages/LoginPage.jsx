@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Logo from '../images/SPARK.png';
 import '../css/LoginPage.css';
+import { useAuth } from '../auth/AuthContext';
 
-const LoginForm = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,7 +40,7 @@ const LoginForm = () => {
         });
 
         if (response.ok) {
-          const result = await response.json();
+          login(); // Update authentication context
           navigate('/events');
         } else {
           const errorData = await response.json();
@@ -59,10 +61,10 @@ const LoginForm = () => {
           <h3>How to Log In:</h3>
           <p>1. Enter your registered email address and password in the fields provided.</p>
           <p>2. Click the "Login" button to access the admin portal.</p>
-          <p>3. If you forget your password, click on the "Forgot Password?" link to reset it.</p>
+          <p>3. If you forget your password, check out the Need Help section below.</p>
   
           <h3>Need Help?</h3>
-          <p>If you encounter any issues logging in or need further assistance, please contact our support team at support@sparkcommunity.org or call 1-800-555-SPARK during business hours.</p>
+          <p>If you encounter any issues logging in or need further assistance, please contact our support team at support@sparkcommunity.org or call 1-800-555-SPARK.</p>
         </div>
       </div>
       <div className='login-right'>
@@ -94,12 +96,11 @@ const LoginForm = () => {
             </div>
             <button type="submit" className='login-button'>Login</button>
             {errors.general && <p className="error">{errors.general}</p>}
-            <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
           </form>
         </div>
       </div>
     </div>
-  );  
+  );
 };
 
-export default LoginForm;
+export default LoginPage;

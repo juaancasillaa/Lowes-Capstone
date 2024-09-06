@@ -45,6 +45,10 @@ body {
   margin-bottom: 20px;
 }
 
+#getstarted-btn {
+  color: white !important;
+}
+
 .hero-section .btn {
   padding: 15px 40px;
   font-size: 1.3rem;
