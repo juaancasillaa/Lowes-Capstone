@@ -16,11 +16,8 @@ const pool = new Pool({
 // Middleware
 app.use(express.json());
 
-const corsOptions = {
-  origin: process.env.CORS_ORIGIN || '*', // Use environment variable for origin or allow all
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+
+app.use(cors());
 
 // Login API Route
 app.post('/login', async (req, res) => {
