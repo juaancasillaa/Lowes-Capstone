@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
+const bcrypt = require('bcryptjs'); // For password hashing
 const app = express();
 const port = 5000;
 require('dotenv').config();
@@ -29,13 +30,22 @@ app.post('/api/login', async (req, res) => {
 
   try {
     const result = await pool.query(
-      'SELECT * FROM Login WHERE email = $1 AND password = $2',
-      [email, password]
+      'SELECT * FROM login WHERE email = $1',
+      [email]
     );
-    console.log('Login result:', result.rows);
 
     if (result.rows.length > 0) {
-      res.status(200).json({ message: 'Login successful' });
+      const user = result.rows[0];
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (isMatch) {
+        res.status(200).json({
+          message: 'Login successful',
+          user: { id: user.id, email: user.email, isadmin: user.isadmin }
+        });
+      } else {
+        res.status(401).json({ error: 'Invalid email or password' });
+      }
     } else {
       res.status(401).json({ error: 'Invalid email or password' });
     }
