@@ -20,7 +20,7 @@ const ContactPage = () => {
         const validationErrors = validateForm(formData);
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await fetch('http://localhost:5000/api/contact', {
+                const response = await fetch('http://localhost:5000/contact', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
