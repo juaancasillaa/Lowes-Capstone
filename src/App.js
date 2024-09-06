@@ -6,6 +6,7 @@ import EventsPage from "./pages/CalendarApp";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import UserEvents from "./pages/UserEventsCalendar"
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/userevents" element={<UserEvents />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
