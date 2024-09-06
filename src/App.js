@@ -6,7 +6,7 @@ import EventsPage from "./pages/CalendarApp";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import EventCalendar from "./pages/EventCalendar"; // Public calendar
+import EventCalendar from "./pages/UserEventsCalendar"; // Public calendar
 import { AuthProvider, useAuth } from './auth/AuthContext';
 
 // Define the ProtectedRoute component
