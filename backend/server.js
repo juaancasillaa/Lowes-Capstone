@@ -3,12 +3,11 @@ const { Pool } = require('pg');
 const cors = require('cors');
 const bcrypt = require('bcryptjs'); // For password hashing
 const app = express();
-const port = 5000;
 require('dotenv').config();
 
 // PostgreSQL connection setup
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL, 
+  connectionString: process.env.POSTGRES_URL,
   ssl: {
     rejectUnauthorized: false
   }
@@ -18,7 +17,7 @@ const pool = new Pool({
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // Adjust this if necessary
+  origin: process.env.CORS_ORIGIN || '*', // Use environment variable for origin or allow all
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
@@ -50,15 +49,15 @@ app.post('/api/login', async (req, res) => {
       res.status(401).json({ error: 'Invalid email or password' });
     }
   } catch (error) {
-    console.error('Database query error:', error.message);
-    res.status(500).json({ error: error.message });
+    console.error('Database query error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
 // Contact Form API Route
 app.post('/api/contact', async (req, res) => {
   const { firstName, lastName, phoneNumber, email, comment } = req.body;
-  
+
   console.log('Received contact form data:', {
     firstName,
     lastName,
@@ -76,8 +75,8 @@ app.post('/api/contact', async (req, res) => {
 
     res.status(200).json({ message: 'Form submitted successfully!' });
   } catch (error) {
-    console.error('Database query error:', error.message);
-    res.status(500).json({ error: error.message });
+    console.error('Database query error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -86,8 +85,8 @@ app.get('/api/events', async (req, res) => {
     const result = await pool.query('SELECT * FROM events');
     res.status(200).json(result.rows);
   } catch (error) {
-    console.error('Database query error:', error.message);
-    res.status(500).json({ error: error.message });
+    console.error('Database query error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -105,11 +104,10 @@ app.post('/api/events', async (req, res) => {
     );
     res.status(200).json(result.rows[0]); // The result will include the auto-generated ID
   } catch (error) {
-    console.error('Database insert error:', error.message);
+    console.error('Database insert error:', error);
     res.status(500).json({ error: 'Failed to add event' });
   }
 });
-
 
 // Update Event Query
 app.put('/api/events/:id', async (req, res) => {
@@ -127,8 +125,8 @@ app.put('/api/events/:id', async (req, res) => {
       res.status(404).json({ error: 'Event not found' });
     }
   } catch (error) {
-    console.error('Error updating event:', error.message);
-    res.status(500).json({ error: error.message });
+    console.error('Error updating event:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -143,12 +141,10 @@ app.delete('/api/events/:id', async (req, res) => {
       res.status(404).json({ error: 'Event not found' });
     }
   } catch (error) {
-    console.error('Error deleting event:', error.message);
-    res.status(500).json({ error: error.message });
+    console.error('Error deleting event:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// Export the app for serverless function handler
+module.exports = app;
