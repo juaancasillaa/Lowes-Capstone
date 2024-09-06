@@ -1,0 +1,82 @@
+.user-calendar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    position: relative; /* Ensure proper stacking context */
+    z-index: 10; /* Lower than the modal */
+}
+
+.custom-modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  .custom-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    background-color: #F1ECE4; /* Your preferred background */
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    z-index: 1001; /* Make sure it's higher than the calendar */
+  }
+  
+  .close-button {
+    background-color: #98B66E; /* Your hover color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  
+  .close-button:hover {
+    background-color: #7D9B53; /* Darker green on hover */
+  }
+
+  .enroll-button, .submit-button, .close-button {
+    background-color: #98B66E; /* Your hover color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .enroll-button:hover, .submit-button:hover, .close-button:hover {
+    background-color: #7D9B53; /* Darker green on hover */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adds space between form elements */
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't overflow */
+  }
+   

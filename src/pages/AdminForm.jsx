@@ -7,27 +7,34 @@ const AdminForm = ({ selectedEvent, events = [], setEvents }) => {
   const [eventForm, setEventForm] = useState({
     id: '',
     title: '',
-    startDateTime: '',
-    endDateTime: '',
-    description: ''
+    startdate: '',
+    enddate: '',
+    details: '',
+    address: ''
   });
 
   // Update form state when a new event is selected
   useEffect(() => {
     if (selectedEvent) {
-      // Populate the form with the selected event's details
       setEventForm({
         id: selectedEvent.id,
         title: selectedEvent.title,
-        startDateTime: selectedEvent.start.split('T').join('T'),
-        endDateTime: selectedEvent.end.split('T').join('T'),
-        description: selectedEvent.description
+        startdate: selectedEvent.startdate || '', // Ensure default empty string if undefined
+        enddate: selectedEvent.enddate || '',
+        details: selectedEvent.details || '',
+        address: selectedEvent.address || ''
       });
     } else {
       // Reset form if no event is selected
-      setEventForm({ id: '', title: '', startDateTime: '', endDateTime: '', description: '' });
+      setEventForm({ id: '', title: '', startdate: '', enddate: '', details: '', address: '' });
     }
   }, [selectedEvent]);
+
+  // Format dates to YYYY-MM-DD
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0];
+  };
 
   // Handle changes in form input fields
   const handleInputChange = (e) => {
@@ -35,64 +42,57 @@ const AdminForm = ({ selectedEvent, events = [], setEvents }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
     console.log('Submitting form:', eventForm);
-    
+
+    // Format dates to YYYY-MM-DD
+    const eventPayload = {
+      title: eventForm.title,
+      details: eventForm.details,
+      startdate: formatDate(eventForm.startdate),
+      enddate: formatDate(eventForm.enddate),
+      address: eventForm.address
+    };
+
     try {
-      const eventPayload = {
-        title: eventForm.title,
-        details: eventForm.description,
-        start: `${eventForm.startDateTime}:00`, // Adding seconds
-        end: `${eventForm.endDateTime}:00` // Adding seconds
-      };
-  
+      const response = eventForm.id
+        ? await fetch(`http://localhost:5000/api/events/${eventForm.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(eventPayload),
+          })
+        : await fetch('http://localhost:5000/api/events', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(eventPayload),
+          });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error details:', errorData);
+        throw new Error(eventForm.id ? 'Failed to update the event' : 'Failed to add the event');
+      }
+
+      const resultEvent = await response.json();
       if (eventForm.id) {
         // Update existing event
-        const response = await fetch(`http://localhost:5000/api/events/${eventForm.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(eventPayload),
-        });
-  
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.error('Error details:', errorData);
-          throw new Error('Failed to update the event');
-        }
-  
-        const updatedEvent = await response.json();
-        // Update the events list with the updated event
-        setEvents(events.map(event => event.id === updatedEvent.id ? updatedEvent : event));
+        setEvents(events.map(event => event.id === resultEvent.id ? resultEvent : event));
       } else {
-        // Add a new event
-        const response = await fetch('http://localhost:5000/api/events', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(eventPayload),
-        });
-  
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.error('Error details:', errorData);
-          throw new Error('Failed to add the event');
-        }
-  
-        const newEvent = await response.json();
-        // Add the new event to the events list
-        setEvents([...events, newEvent]);
+        // Add new event
+        setEvents([...events, resultEvent]);
       }
-    
+
       // Reset the form after submission
-      setEventForm({ id: '', title: '', startDateTime: '', endDateTime: '', description: '' });
+      setEventForm({ id: '', title: '', startdate: '', enddate: '', details: '', address: '' });
     } catch (error) {
       console.error('Error saving event:', error);
     }
-  };     
-  
+  };
+
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       try {
@@ -100,17 +100,16 @@ const AdminForm = ({ selectedEvent, events = [], setEvents }) => {
           method: 'DELETE',
         });
         console.log('Event deleted:', eventForm.id);
-  
+
         // Remove the deleted event from the events list
-        const updatedEvents = events.filter((event) => event.id !== eventForm.id);
-        setEvents(updatedEvents);
+        setEvents(events.filter(event => event.id !== eventForm.id));
         // Reset the form after deletion
-        setEventForm({ id: '', title: '', startDateTime: '', endDateTime: '', description: '' });
+        setEventForm({ id: '', title: '', startdate: '', enddate: '', details: '', address: '' });
       } catch (error) {
         console.error('Error deleting event:', error);
       }
     }
-  };  
+  };
 
   return (
     <div className="admin-form-container">
@@ -128,35 +127,45 @@ const AdminForm = ({ selectedEvent, events = [], setEvents }) => {
           />
         </div>
         <div className="form-group">
-          <label>Start Date & Time:</label>
+          <label>Start Date:</label>
           <input
             className='form-inputs'
-            type="datetime-local"
-            name="startDateTime"
-            value={eventForm.startDateTime}
+            type="date"
+            name="startdate"
+            value={eventForm.startdate}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="form-group">
-          <label>End Date & Time:</label>
+          <label>End Date:</label>
           <input
             className='form-inputs'
-            type="datetime-local"
-            name="endDateTime"
-            value={eventForm.endDateTime}
+            type="date"
+            name="enddate"
+            value={eventForm.enddate}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="form-group">
-          <label>Description:</label>
+          <label>Details:</label>
           <textarea
             className='form-inputs'
-            name="description"
-            value={eventForm.description}
+            name="details"
+            value={eventForm.details}
             onChange={handleInputChange}
             required
+          />
+        </div>
+        <div className="form-group">
+          <label>Address:</label>
+          <input
+            className='form-inputs'
+            type="text"
+            name="address"
+            value={eventForm.address}
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-actions">

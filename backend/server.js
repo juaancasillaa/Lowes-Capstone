@@ -45,16 +45,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.get('/api/events', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM events');
-    res.status(200).json(result.rows);
-  } catch (error) {
-    console.error('Database query error:', error.message);
-    res.status(500).json({ error: error.message });
-  }
-});
-
 // Contact Form API Route
 app.post('/api/contact', async (req, res) => {
   const { firstName, lastName, phoneNumber, email, comment } = req.body;
@@ -69,10 +59,10 @@ app.post('/api/contact', async (req, res) => {
 
   try {
     const result = await pool.query(
-      'INSERT INTO contactus (first_name, last_name, email, phone_number, message) VALUES ($1, $2, $3, $4, $5) RETURNING*',
+      'INSERT INTO contactus (first_name, last_name, email, phone_number, message) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [firstName, lastName, phoneNumber, email, comment]
     );
-    console.log('Contact inserted successfully');
+    console.log('Contact inserted successfully:', result.rows[0]);
 
     res.status(200).json({ message: 'Form submitted successfully!' });
   } catch (error) {
@@ -81,29 +71,45 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+app.get('/api/events', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM events');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Database query error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/api/events', async (req, res) => {
-  const { title, details, start, end } = req.body;
+  const { title, details, address, startdate, enddate } = req.body;
+
+  if (!startdate || !enddate) {
+    return res.status(400).json({ error: 'Start and end dates are required' });
+  }
 
   try {
     const result = await pool.query(
-      'INSERT INTO events (title, details, start, "end") VALUES ($1, $2, $3, $4) RETURNING *',
-      [title, details, start, end]
+      'INSERT INTO events (title, details, address, startdate, enddate) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [title, details, address, startdate, enddate]
     );
-    res.status(200).json(result.rows[0]);
+    res.status(200).json(result.rows[0]); // The result will include the auto-generated ID
   } catch (error) {
-    console.error('Database insert error:', error);
+    console.error('Database insert error:', error.message);
     res.status(500).json({ error: 'Failed to add event' });
   }
 });
 
+
+// Update Event Query
 app.put('/api/events/:id', async (req, res) => {
   const { id } = req.params;
-  const { title, details, start, end } = req.body;
+  const { title, details, address, startdate, enddate } = req.body;
 
   try {
     const result = await pool.query(
-      'UPDATE events SET title = $1, details = $2, start = $3, "end" = $4 WHERE id = $5 RETURNING *',
-      [title, details, start, end, id]
+      'UPDATE events SET title = $1, details = $2, address = $3, startdate = $4, enddate = $5 WHERE id = $6 RETURNING *',
+      [title, details, address, startdate, enddate, id]
     );
     if (result.rowCount > 0) {
       res.status(200).json(result.rows[0]);
@@ -111,7 +117,7 @@ app.put('/api/events/:id', async (req, res) => {
       res.status(404).json({ error: 'Event not found' });
     }
   } catch (error) {
-    console.error('Error updating event:', error);
+    console.error('Error updating event:', error.message);
     res.status(500).json({ error: error.message });
   }
 });
@@ -127,7 +133,7 @@ app.delete('/api/events/:id', async (req, res) => {
       res.status(404).json({ error: 'Event not found' });
     }
   } catch (error) {
-    console.error('Error deleting event:', error);
+    console.error('Error deleting event:', error.message);
     res.status(500).json({ error: error.message });
   }
 });
