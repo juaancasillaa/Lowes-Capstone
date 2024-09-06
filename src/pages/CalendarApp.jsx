@@ -1,105 +1,121 @@
-import React, { useState } from 'react';
+// CalendarApp.jsx
+import React, { useState, useEffect } from 'react';
 import EventCalendar from './EventCalendar';
 import AdminForm from './AdminForm';
-import '../css/CalendarApp.css'; // Import CSS for styling
+import EventModal from './EventModal'; // Import the modal component
+import '../css/CalendarApp.css';
 
 const CalendarApp = () => {
-  // State to manage the list of events
-  const [events, setEvents] = useState([
-    { id: 1, title: 'Event 1', detail: 'Detail 1', address: 'Address 1', start: '2024-08-30T10:00', end: '2024-08-30T12:00' },
-  ]);
-
-  // State to manage the currently selected event
+  const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
-  // State to manage admin privileges; can be extended or modified later
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAdmin] = useState(true);
 
-  // Handle date selection on the calendar to add a new event
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/events');
+        const data = await response.json();
+        
+        const formattedEvents = data.map(event => ({
+          id: event.id,
+          title: event.title,
+          start: event.startdate,
+          end: event.enddate,
+          detail: event.details,
+          address: event.address
+        }));
+
+        setEvents(formattedEvents);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
   const handleDateSelect = (selectInfo) => {
-    setSelectedEvent(null); // Reset form for a new event
+    setSelectedEvent(null);
     const title = prompt('Enter a title for your event');
     const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect(); // Clear date selection
+    calendarApi.unselect();
 
     if (title) {
-      // Create a new event with user-provided title and default details
-      let newEvent = {
-        id: Math.random(), // Unique ID for the event
+      const newEvent = {
+        id: Math.random(),
         title,
         detail: 'No details added',
         address: 'No address added',
-        start: `${selectInfo.startStr}T10:00`, // Default start time
-        end: `${selectInfo.endStr}T12:00`, // Default end time
+        start: `${selectInfo.startStr}T10:00`,
+        end: `${selectInfo.endStr}T12:00`,
       };
-      setEvents([...events, newEvent]); // Add new event to the state
+      setEvents([...events, newEvent]);
     }
   };
 
-  // Handle clicking on an event to select it
   const handleEventClick = (clickInfo) => {
-    const clickedEvent = events.find((event) => event.id === clickInfo.event.id);
-    setSelectedEvent(clickedEvent); // Set the selected event
+    const clickedEvent = events.find(event => event.id === clickInfo.event.id);
+    setSelectedEvent(clickedEvent);
+    setIsModalOpen(true);
   };
 
-  // Add or update an event based on the form data
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
+
   const addOrUpdateEvent = (eventForm) => {
     const eventDateTime = `${eventForm.date}T${eventForm.time}`;
 
     if (eventForm.id) {
-      // Update existing event
-      const updatedEvents = events.map((event) =>
+      const updatedEvents = events.map(event =>
         event.id === eventForm.id ? { ...eventForm, start: eventDateTime, end: eventDateTime } : event
       );
-      setEvents(updatedEvents); // Update state with the modified events list
+      setEvents(updatedEvents);
     } else {
-      // Add a new event
-      let newEvent = {
-        id: Math.random(), // Unique ID for the new event
+      const newEvent = {
+        id: Math.random(),
         title: eventForm.title,
         detail: eventForm.detail,
         address: eventForm.address,
         start: eventDateTime,
         end: eventDateTime,
       };
-      setEvents([...events, newEvent]); // Add new event to the state
+      setEvents([...events, newEvent]);
     }
   };
 
-  // Delete an event by its ID
   const deleteEvent = (eventId) => {
-    const updatedEvents = events.filter((event) => event.id !== eventId);
-    setEvents(updatedEvents); // Update state with the remaining events
-    setSelectedEvent(null); // Clear the selected event
+    const updatedEvents = events.filter(event => event.id !== eventId);
+    setEvents(updatedEvents);
+    setSelectedEvent(null);
   };
 
   return (
     <div className="calendar-app">
       <div className="calendar-container">
-        {/* Render the calendar component */}
-        <EventCalendar 
+        <EventCalendar
           events={events}
           handleDateSelect={handleDateSelect}
           handleEventClick={handleEventClick}
         />
       </div>
       <div className="admin-form-container">
-        {/* Render the admin form if the user is an admin */}
         {isAdmin && (
-          <AdminForm 
+          <AdminForm
             selectedEvent={selectedEvent}
             addOrUpdateEvent={addOrUpdateEvent}
             deleteEvent={deleteEvent}
             events={events}
-            setEvents={setEvents} // Pass setEvents to the AdminForm for event management
+            setEvents={setEvents}
           />
         )}
       </div>
       <div className="event-list-container">
         <h3>Event List</h3>
         <ul className="event-list">
-          {events.map((event) => (
+          {events.map(event => (
             <li key={event.id} className="event-item">
               <span>{event.title}</span>
               <div className="event-actions">
@@ -110,6 +126,13 @@ const CalendarApp = () => {
           ))}
         </ul>
       </div>
+      {selectedEvent && (
+        <EventModal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          event={selectedEvent}
+        />
+      )}
     </div>
   );
 };
