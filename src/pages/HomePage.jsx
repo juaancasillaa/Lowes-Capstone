@@ -14,7 +14,7 @@ function HomePage() {
         <div className="hero-content">
           <h1 className="hero-h1">Supporting Projects & Realizing Kindness.</h1>
           <p className="lead">Empowering Employee Volunteering.</p>
-          <a href="/login" className="btn btn-lg">
+          <a href="/login" id="getstarted-btn" className="btn btn-lg">
             Get Started
           </a>
         </div>
