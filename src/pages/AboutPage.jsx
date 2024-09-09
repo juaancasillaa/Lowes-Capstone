@@ -23,7 +23,7 @@ function AboutPage() {
       <section className="hero-sections text-center">
         <div className="hero-contents">
           <h1>We are SPARK</h1>
-          <p className="lead">Be a Welcomer by volunteering, engaging your business, and more.</p>
+          <p className="lead">Help your community by volunteering, engaging your business, and more.</p>
         </div>
       </section>
 
