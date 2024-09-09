@@ -162,6 +162,7 @@ const FooterContainer = styled.footer`
 
 const LogoContainer = styled.div`
   margin-bottom: 20px;
+  margin-left: -10px;
 `;
 
 const SocialIcons = styled.div`
